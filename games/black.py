@@ -45,7 +45,7 @@ def print_rules():
 
 
 def blackgak():
-    conn = sqlite3.connect('../db/project.db')
+    conn = sqlite3.connect('db/project.db')
     cursor = conn.cursor()
     cursor.execute("SELECT coins FROM users where inset = 1")
     balance = [i[0] for i in cursor.fetchall()][0]
@@ -119,5 +119,3 @@ def blackgak():
 
     if balance <= 0:
         print("\n💸 Увы, у вас закончились деньги. Игра окончена.\n")
-
-blackgak()

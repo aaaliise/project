@@ -2,21 +2,23 @@
 from games.black import blackgak
 from scripts.initing import init_db
 from author import login
+from games.lucky import luck
 import sqlite3
 
 def main():
     init_db()
     print("Добро пожаловать в PYTHON CASINO!\nГде каждый может испытать свою удачу!\nДля начала игры нужно пройти авторизацию\n")
     login()
-    game = ''
-    while game != 'stop':
+    while True:
         game = input('В какую игры вы хотите сыграть (выберете из предложенного)\n'
                  '(Блэкджек/Lucky Dice)\n'
                  'для выхода напишите "stop" без кавычек ').strip()
         if game == 'Блэкджек':
             blackgak()
         elif game == 'Lucky Dice':
-            blackgak()
+            luck()
+        elif game == 'stop':
+            break
         else:
             print('Неверный формат ввода.')
 
