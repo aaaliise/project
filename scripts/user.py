@@ -8,3 +8,5 @@ class User(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='')
     coins = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    password = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    inset = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
