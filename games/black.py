@@ -1,6 +1,5 @@
 import random
-from scripts import db_session
-from scripts.user import User
+import sqlite3
 
 
 def deal_card():
@@ -32,7 +31,7 @@ def get_payout_multiplier(score):
         return 1.0
 
 def display_hand(name, hand):
-    print(f"{name} карты: {hand} | Сумма: {calculate_score(hand)}")
+    print(f"{name} карты: {hand} | Сумма: {calculate_score(hand)}") # можно ли добавить стикеры?????
 
 def print_rules():
     print("🃏 Правила Блэкджека со ставками:")
@@ -44,8 +43,13 @@ def print_rules():
     print("- Дилер берёт карты до 17 включительно.")
     print("- Побеждает тот, у кого сумма ближе к 21.\n")
 
+
 def blackgak():
-    balance = 100
+    conn = sqlite3.connect('../db/project.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT coins FROM users where inset = 1")
+    balance = [i[0] for i in cursor.fetchall()][0]
+
     print("🎲 Добро пожаловать в Блэкджек со ставками!\n")
     print_rules()
 
@@ -70,7 +74,7 @@ def blackgak():
             print(f"Карта дилера: [{dealer_hand[0]}, ?]")
 
             if calculate_score(player_hand) > 21:
-                print("\n💥 Перебор! Вы проиграли.\n")
+                print("\n💥 Перебор! Вы проиграли. В следующий раз вам обязательно повезет больше!\n")
                 balance -= bet
                 game_over = True
                 break
@@ -101,10 +105,19 @@ def blackgak():
                 print(f"\n🎉 Победа! Вы выиграли {winnings} фишек (×{multiplier})\n")
                 balance += winnings
             elif player_score < dealer_score:
-                print("\n😞 Вы проиграли.\n")
+                print("\n😞 Вы проиграли. В следующий раз вам обязательно повезет больше!\n")
                 balance -= bet
             else:
                 print("\n🤝 Ничья. Ставка возвращена.\n")
         print("-" * 40)
+        print(f"💰 Ваш баланс: {balance} фишек")
+        cursor.execute("UPDATE users SET coins = ? WHERE inset = 1", (balance,))
+        conn.commit()
+        choice = input("Хотите сделать еще одну ставку? (y/n): ").lower()
+        if choice != 'y':
+            break
 
-    print("\n💸 Увы, у вас закончились деньги. Игра окончена.\n")
+    if balance <= 0:
+        print("\n💸 Увы, у вас закончились деньги. Игра окончена.\n")
+
+blackgak()

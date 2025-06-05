@@ -1,14 +1,26 @@
 #from scripts import db_session
 from games.black import blackgak
 from scripts.initing import init_db
+from author import login
 import sqlite3
 
+def main():
+    init_db()
+    print("Добро пожаловать в PYTHON CASINO!\nГде каждый может испытать свою удачу!\nДля начала игры нужно пройти авторизацию\n")
+    login()
+    game = ''
+    while game != 'stop':
+        game = input('В какую игры вы хотите сыграть (выберете из предложенного)\n'
+                 '(Блэкджек/Lucky Dice)\n'
+                 'для выхода напишите "stop" без кавычек ').strip()
+        if game == 'Блэкджек':
+            blackgak()
+        elif game == 'Lucky Dice':
+            blackgak()
+        else:
+            print('Неверный формат ввода.')
 
-init_db()
-conn = sqlite3.connect('db/project.db')
-cursor = conn.cursor()
-cursor.execute("SELECT name FROM users")
-users = [i[0] for i in cursor.fetchall()]
-print(users)
+
+main()
 
 
