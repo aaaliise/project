@@ -17,8 +17,8 @@ class TowerGame:
 
     def display_header(self):
         """Выводит заголовок игры"""
-        print("=== ИГРА 'БАШНЯ' ===")
-        print(f"\n💰 Ваш баланс: {self.balance} фишек")
+        #print("=== ИГРА 'БАШНЯ' ===")
+        #print(f"\n💰 Ваш баланс: {self.balance} фишек")
         if self.game_active:
             print(f"Текущий этаж: {self.current_floor}")
             print(f"Множитель выигрыша: {self.multiplier:.1f}x")
@@ -113,6 +113,7 @@ class TowerGame:
 
     def main_loop(self):
         """Главный игровой цикл"""
+        self.start()
         while True:
             self.display_header()
 
@@ -140,5 +141,10 @@ class TowerGame:
                 break
             else:
                 print("Неверный выбор. Попробуйте снова.")
+
+    def start(self):
+        print("\n=== ИГРА 'БАШНЯ' ===")
+        print(f"Баланс: ${self.balance:.2f}")
+        self.display_header()
 
 

@@ -78,7 +78,6 @@ def login():
         cursor.execute("SELECT password FROM users where name = ?", (username,))
 
         real_password = [i[0] for i in cursor.fetchall()]
-        print(real_password)
 
         if real_password[0] == password:
             cursor.execute("UPDATE users SET inset = 1 WHERE name = ?", (username,))

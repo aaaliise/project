@@ -50,7 +50,7 @@ def blackgak():
     cursor.execute("SELECT coins FROM users where inset = 1")
     balance = [i[0] for i in cursor.fetchall()][0]
 
-    print("🎲 Добро пожаловать в Блэкджек со ставками!\n")
+    print("\n🎲 Добро пожаловать в Блэкджек со ставками!\n")
     print_rules()
 
     while balance > 0:
