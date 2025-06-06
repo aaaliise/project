@@ -3,6 +3,7 @@ from scripts.initing import init_db
 from author import login
 from games.lucky import luck
 from games.rule import play_slots
+from games.tower import TowerGame
 import sqlite3
 
 
@@ -17,7 +18,7 @@ def main():
         balance = [i[0] for i in cursor.fetchall()][0]
         print(f"\n💰 Ваш баланс: {balance} фишек")
         game = input('В какую игры вы хотите сыграть (выберете из предложенного)\n'
-                 '(Блэкджек/Lucky Dice/Рулетка)\n'
+                 '(Блэкджек/Lucky Dice/Рулетка/Башня)\n'
                  'для выхода напишите "stop" без кавычек ').strip()
         if game == 'Блэкджек':
             blackgak()
@@ -25,6 +26,9 @@ def main():
             luck()
         elif game == 'Рулетка':
             play_slots()
+        elif game == 'Башня':
+            game = TowerGame()
+            game.main_loop()
         elif game == 'stop':
             break
         else:
