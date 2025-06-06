@@ -53,8 +53,8 @@ def blackgak():
     print("🎲 Добро пожаловать в Блэкджек со ставками!\n")
     print_rules()
 
-    while balance > 0: # как выйти????
-        print(f"💰 Ваш баланс: {balance} фишек")
+    while balance > 0:
+        print(f"\n💰 Ваш баланс: {balance} фишек")
         try:
             bet = int(input("Сделайте ставку: "))
             if bet <= 0 or bet > balance:

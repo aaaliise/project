@@ -10,6 +10,11 @@ def main():
     print("Добро пожаловать в PYTHON CASINO!\nГде каждый может испытать свою удачу!\nДля начала игры нужно пройти авторизацию\n")
     login()
     while True:
+        conn = sqlite3.connect('db/project.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT coins FROM users where inset = 1")
+        balance = [i[0] for i in cursor.fetchall()][0]
+        print(f"\n💰 Ваш баланс: {balance} фишек")
         game = input('В какую игры вы хотите сыграть (выберете из предложенного)\n'
                  '(Блэкджек/Lucky Dice)\n'
                  'для выхода напишите "stop" без кавычек ').strip()
