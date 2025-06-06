@@ -4,7 +4,7 @@ import sqlite3
 
 def deal_card():
     """Возвращает случайную карту из колоды"""
-    cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]  # 10 для J, Q, K
+    cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11] * 4 # 10 для J, Q, K
     return random.choice(cards)
 
 def calculate_score(hand):
