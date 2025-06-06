@@ -1,7 +1,5 @@
-import getpass
 import re
 import sqlite3
-from scripts.initing import init_db
 
 
 def is_password_strong(password):
@@ -25,7 +23,6 @@ def register():
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM users")
     users = [i[0] for i in cursor.fetchall()]
-    print(users)
 
     while True:
         username = input("Придумайте имя пользователя: ").strip()
@@ -65,7 +62,6 @@ def login():
 
         cursor.execute("SELECT name FROM users")
         users = [i[0] for i in cursor.fetchall()]
-        print(users)
 
         if username not in users:
             answer = input("Такого пользователя нет. Хотите зарегистрироваться? (y/n): ").strip().lower()

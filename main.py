@@ -1,10 +1,10 @@
-#from scripts import db_session
 from games.black import blackgak
 from scripts.initing import init_db
 from author import login
 from games.lucky import luck
 from games.rule import play_slots
 import sqlite3
+
 
 def main():
     init_db()
