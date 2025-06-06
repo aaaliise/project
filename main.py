@@ -4,7 +4,7 @@ from author import login
 from games.lucky import luck
 from games.rule import play_slots
 from games.tower import TowerGame
-
+from val import val
 import sqlite3
 
 
@@ -21,7 +21,7 @@ def main():
         print(f"\n💰 Ваш баланс: {balance} фишек")
         game = input('В какую игры вы хотите сыграть (выберете из предложенного)\n'
                      '(Блэкджек/Lucky_Dice/Рулетка/Башня)\n'
-                     'для пополнения баланса напишите "value" без кавычек'
+                     'для пополнения баланса напишите "value" без кавычек\n'
                      'для выхода напишите "stop" без кавычек ').strip()
         if game == 'Блэкджек':
             blackgak()

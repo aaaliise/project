@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def init_db():
     conn = sqlite3.connect('db/project.db')
     cursor = conn.cursor()
@@ -9,7 +10,8 @@ def init_db():
             name TEXT UNIQUE NOT NULL,
             coins INTEGER NOT NULL,
             password TEXT NOT NULL,
-            inset INTEGER NOT NULL
+            inset INTEGER NOT NULL,
+            new_pas TEXT NOT NULL
         )
     ''')
     conn.commit()

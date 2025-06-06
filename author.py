@@ -43,7 +43,7 @@ def register():
                 print("Ошибка: пароли не совпадают. Попробуйте ещё раз.")
             else:
                 cursor.execute(
-                    "insert into users (name, coins, password, inset) values (?, 100, ?, 1)",
+                    "insert into users (name, coins, password, inset, new_pas) values (?, 100, ?, 1, 0)",
                     (username, password))
                 conn.commit()
                 print(f"Пользователь {username} успешно зарегистрирован!")
